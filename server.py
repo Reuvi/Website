@@ -38,5 +38,10 @@ def imagepage():
 def get_image():
     return send_from_directory(UPLOAD_FOLDER, 'image.jpg')
 
+# Endpoint for front/mainpage
+@app.route('/)
+def main():
+    return "Welcome to my website, go to /image to see GPT eyes"
+
 if __name__ == '__main__':
     app.run()
