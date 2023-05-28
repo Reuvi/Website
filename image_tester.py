@@ -2,7 +2,7 @@ import requests
 
 url = 'http://50.116.61.76/upload'  # Website IP
 
-image_path = 'image.jpg'  # Path to the image file
+image_path = 'image.jpg'  # Path to the image file in your local directory
 
 with open(image_path, 'rb') as image_file:
     files = {'image': image_file}
