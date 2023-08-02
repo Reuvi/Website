@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Pneumonia Detection </title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* CSS to set black background on left and right sides */
+        body {
+            background-color: black;
+        }
+        .center-content {
+            background-color: white; /* Add any desired background color for the center content */
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .centered-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        #predictionResult {
+            font-size: 24px;
+        }
+        /* CSS for the footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5 center-content">
+        <h1 class="mb-4 text-center">Upload an Xray</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="file" name="imageInput" id="imageInput" accept="image/*" class="form-control-file">
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+        <div class="centered-image">
+            <div id="imageContainer">
+                <!-- The uploaded image will be displayed here -->
+            </div>
+        </div>
+        <div id="predictionResult" class="text-center">
+            <!-- The prediction result will be displayed here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        Artificial intelligence model that will predict pneumonia in lungs created by Reuvi Israeli
+    </footer>
+
+    <script>
+        document.getElementById("uploadForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const fileInput = document.getElementById("imageInput");
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append("imageFile", file);
+
+            fetch("/upload_project_1", {
+                method: "POST",
+                body: formData,
+            })
+            .then(response => response.json())  // Parse the JSON response
+            .then(responseData => {
+                const imageContainer = document.getElementById("imageContainer");
+                const image = document.createElement("img");
+                image.src = URL.createObjectURL(file);
+                image.style.maxWidth = "100%";
+                imageContainer.innerHTML = "";
+                imageContainer.appendChild(image);
+
+                // Process the response data for prediction result
+                const predictionResult = document.getElementById("predictionResult");
+                const message = responseData.message;
+                predictionResult.textContent = message;
+
+                // Set fancy text colors based on the prediction result
+                if (message === "Confidently Pneumonia") {
+                    predictionResult.style.color = "red";
+                } else if (message === "Likely Pneumonia") {
+                    predictionResult.style.color = "grey";
+                } else if (message === "Healthy") {
+                    predictionResult.style.color = "green";
+                } else {
+                    predictionResult.style.color = "black";
+                }
+            })
+            .catch(error => console.error(error));
+        });
+    </script>
+
+    <!-- Add Bootstrap JS (optional, but some features might require it) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
