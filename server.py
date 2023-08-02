@@ -73,7 +73,7 @@ def imagepage():
 
 #End Point to serve the Main Page
 @app.route('/', methods=['GET'])
-def imagepage():
+def mainpage():
     return render_template('index.html')
 
 # Endpoint to serve the AI model
