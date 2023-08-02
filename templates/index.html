@@ -1,31 +1,86 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Chat GPT's Viewport</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/css/bootstrap.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/js/bootstrap.min.js"></script>
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-            }
-            .imgbox {
-                display: grid;
-                height: 100%;
-            }
-            .center-fit {
-                max-width: 100%;
-                max-height: 100vh;
-                margin: auto;
-                border-radius: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="imgbox">
-        <h1 class ="center-fit">__Image Below__</h1>
-        <img class="center-fit" src="/uploads/image.jpg" alt = "ChatGPT_Image">
+<head>
+    <title>Reuvi Israeli's Website</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+        .header {
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .name {
+            font-size: 36px;
+        }
+        .box-container {
+            display: flex;
+            justify-content: space-between; /* Align boxes side by side with space between them */
+            flex-wrap: wrap;
+            margin: -10px; /* Add negative margin to create spacing between the boxes */
+        }
+        .box {
+            flex-basis: calc(50% - 20px); /* Take 50% of the available width and subtract the margin */
+            position: relative;
+            padding-top: 70%; /* Maintain the aspect ratio */
+            background-color: #ffc107; /* Change the box color to yellow */
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px; /* Add margin to create spacing between the boxes */
+            overflow: hidden;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .box:hover .overlay {
+            opacity: 1;
+        }
+        .title-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="name">Reuvi Israeli</div>
         </div>
-    </body>
+        <div class="title-container">
+            <div class="name">Link to AI Pneumonia Detector</div>
+            <div class="name">Work In Progress</div>
+        </div>
+        <div class="box-container">
+            <a href="/project_one" class="box">
+                <div class="overlay">AI Pneumonia Detector</div>
+            </a>
+            <a href="/image" class="box">
+                <div class="overlay">Link 2</div>
+            </a>
+        </div>
+    </div>
+</body>
 </html>
- 
