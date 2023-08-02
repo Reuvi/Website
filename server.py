@@ -65,10 +65,15 @@ def project():
     else:
         return jsonify({'message': 'No Pneumonia'}), 200
 
-# Endpoint to serve the uploaded image
+# Endpoint to serve the image page
 @app.route('/image', methods=['GET'])
 def imagepage():
     filename = os.path.join(UPLOAD_FOLDER, 'image.jpg')
+    return render_template('image.html')
+
+#End Point to serve the Main Page
+@app.route('/', methods=['GET'])
+def imagepage():
     return render_template('index.html')
 
 # Endpoint to serve the AI model
