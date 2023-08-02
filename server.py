@@ -3,7 +3,6 @@ import os
 from tensorflow import keras
 from PIL import Image
 import numpy as np
-from sklearn.metrics import accuracy_score
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'  # Folder to store uploaded images
