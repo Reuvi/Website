@@ -87,4 +87,4 @@ def get_image():
     return send_from_directory(UPLOAD_FOLDER, 'image.jpg')
 
 if __name__ == '__main__':
-    app.run() 
+    app.run(host='50.116.61.76', port='80') 
