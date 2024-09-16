@@ -1,2 +1,2 @@
 # Website
-For GPT analysis
+Website that could run the model.
